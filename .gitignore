@@ -9,6 +9,9 @@ wheels/
 # Virtual environments
 .venv
 
+# coverage
+.coverage
+
 # datagarden settings
 pub-local.sh
 todo.txt
