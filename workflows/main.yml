@@ -3,7 +3,6 @@ on:
   - push
 
 jobs:
-
   build_source_dist:
     name: Build source distribution
     if: startsWith(github.event.ref, 'refs/tags/v')
