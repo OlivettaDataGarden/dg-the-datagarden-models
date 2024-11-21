@@ -35,10 +35,6 @@ jobs:
     name: Publish package
     if: startsWith(github.event.ref, 'refs/tags/v')
     needs:
-      - format
-      - lint
-      - typecheck
-      - test
       - build_source_dist
 
     runs-on: ubuntu-latest
