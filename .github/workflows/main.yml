@@ -1,6 +1,10 @@
 name: packaging
 on:
-  - push
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
 
 jobs:
   build_source_dist:
