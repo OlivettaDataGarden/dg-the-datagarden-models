@@ -1,4 +1,4 @@
-from .models import DataGardenModel, DataGardenModelLegends, DataGardenSubModel
+from .models import DataGardenModel, DataGardenModelKeys, DataGardenModelLegends, DataGardenSubModel
 from .standard_models import (
     EconomicBaseKeys,
     EconomicsValue,
@@ -14,4 +14,5 @@ __all__ = [
     "DataGardenModelLegends",
     "EconomicBaseKeys",
     "ValueAndPercentageKeys",
+    "DataGardenModelKeys",
 ]

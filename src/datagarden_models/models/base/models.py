@@ -3,7 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, model_validator
 
 from .legend import DataGardenModelLegends, Legend
-from .metadata import MetadataModel
+from .metadata import MetadataModel, MetadataModelKeys
 
 
 class DataGardenSubModel(BaseModel):
@@ -36,6 +36,12 @@ class DataGardenSubModel(BaseModel):
 
     def __bool__(self) -> bool:
         return not self.is_empty
+
+
+class DataGardenModelKeys(MetadataModelKeys):
+    DATAGARDEN_MODEL_VERSION = "datagarden_model_version"
+    LOCAL_REGIONAL_DATA = "local_regional_data"
+    METADATA = "metadata about the data object instance."
 
 
 class DataGardenModel(DataGardenSubModel):

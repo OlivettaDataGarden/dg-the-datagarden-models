@@ -3,8 +3,10 @@ from typing import Any, Literal, Union, get_args, get_origin
 
 from pydantic import BaseModel
 
+from .metadata import MetadataModelLegends
 
-class DataGardenModelLegends:
+
+class DataGardenModelLegends(MetadataModelLegends):
     DATAGARDEN_MODEL_VERSION: str = "Version of the data model."
     LOCAL_REGIONAL_DATA: str = (
         "Additional source data that we have not attributed to a common attribute "
