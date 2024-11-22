@@ -11,6 +11,7 @@ class DataGardenModelLegends:
         "in the data model. For understanding the contents of this dataset please "
         "check documentation of source."
     )
+    METADATA: str = "Metadata about the data object instance."
 
 
 class Legend:

@@ -3,6 +3,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, model_validator
 
 from .legend import DataGardenModelLegends, Legend
+from .metadata import MetadataModel
 
 
 class DataGardenSubModel(BaseModel):
@@ -46,6 +47,7 @@ class DataGardenModel(DataGardenSubModel):
     local_regional_data: Optional[dict] = Field(
         default=None, description=DataGardenModelLegends.LOCAL_REGIONAL_DATA
     )
+    metadata: MetadataModel = Field(default=MetadataModel(), description=DataGardenModelLegends.METADATA)
 
     @model_validator(mode="before")
     def check_datagarden_model_version(cls, values):
