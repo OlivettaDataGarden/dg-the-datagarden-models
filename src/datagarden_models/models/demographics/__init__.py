@@ -1,6 +1,6 @@
 from pydantic import Field
 
-from ..base import DataGardenModel, DataGardenModelLegends
+from ..base import DataGardenModel, DataGardenModelKeys, DataGardenModelLegends
 from .base_demographics import DemographicsBaseKeys
 from .education import Education, EducationV1Keys
 from .fertility import Fertility, FertilityV1Keys
@@ -10,6 +10,7 @@ from .population import Population, PopulationV1Keys
 
 
 class DemographicsV1Keys(
+    DataGardenModelKeys,
     PopulationV1Keys,
     FertilityV1Keys,
     LifeExpectancyV1Keys,

@@ -29,6 +29,7 @@ class WeatherV1Keys(WeatherPeriodTotalsV1Keys):
 
 
 class WeatherV1Legends(DataGardenModelLegends):
+    MODEL_LEGEND: str = "Weather data for a region. "
     MIN_TEMP = "minimum temperature"
     MAX_TEMP = "maximum temperature"
     MEAN_TEMP = "mean temperature"
@@ -50,7 +51,6 @@ L = WeatherV1Legends
 
 
 class WeatherObservationV1(DataGardenModel):
-    MODEL_LEGEND: str = "Weather data for a region. "
     datagarden_model_version: str = Field("v1.0", frozen=True, description=L.DATAGARDEN_MODEL_VERSION)
     min_temp: Optional[float] = Field(None, ge=-70, le=70, description=L.MIN_TEMP)
     max_temp: Optional[float] = Field(None, ge=-70, le=70, description=L.MAX_TEMP)
