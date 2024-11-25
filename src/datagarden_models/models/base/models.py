@@ -41,7 +41,7 @@ class DataGardenSubModel(BaseModel):
 class DataGardenModelKeys(MetadataModelKeys):
     DATAGARDEN_MODEL_VERSION = "datagarden_model_version"
     LOCAL_REGIONAL_DATA = "local_regional_data"
-    METADATA = "metadata about the data object instance."
+    METADATA = "metadata"
 
 
 class DataGardenModel(DataGardenSubModel):
