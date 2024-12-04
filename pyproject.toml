@@ -1,6 +1,6 @@
 [project]
 name = "the-datagarden-models"
-version = "1.5.6"
+version = "1.5.7"
 description = "Base data models for the datagarden."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -32,6 +32,13 @@ dev = [
 
 [project.scripts]
 the-datagarden-models = "datagarden_models.cli:main"
+
+
+[project.urls]
+"Read the Docs" = "https://dg-the-datagarden-models.readthedocs.io/en/latest/"
+"The-DataGarden" = "https://www.the-datagarden.io/"
+"Data Models" = "https://www.the-datagarden.io/data-docs"
+"Source" = "https://github.com/OlivettaDataGarden/dg-the-datagarden-models"
 
 [tool.ruff]
 line-length = 110
