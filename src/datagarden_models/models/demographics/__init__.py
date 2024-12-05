@@ -5,6 +5,7 @@ from .base_demographics import DemographicsBaseKeys
 from .education import Education, EducationV1Keys
 from .fertility import Fertility, FertilityV1Keys
 from .life_expectancy import LifeExpectancy, LifeExpectancyV1Keys
+from .migration import Migration
 from .mortality import Mortality, MortalityV1Keys
 from .population import Population, PopulationV1Keys
 
@@ -23,6 +24,7 @@ class DemographicsV1Keys(
     FERTILITY = "fertility"
     LIFE_EXPECTANCY = "life_expectancy"
     EDUCATION = "education"
+    MIGRATION = "migration"
     DATAGARDEN_MODEL_NAME = "Demographics"
 
 
@@ -33,6 +35,7 @@ class DemographicsV1Legends(DataGardenModelLegends):
     FERTILITY = "Fertility indicators for the region. "
     LIFE_EXPECTANCY = "Life expectancy indicators for the region. "
     EDUCATION = "Education level indicators for the region. "
+    MIGRATION = "Migration indicators for the region. "
 
 
 L = DemographicsV1Legends
@@ -45,3 +48,4 @@ class DemographicsV1(DataGardenModel):
     mortality: Mortality = Field(default_factory=Mortality, description=L.MORTALITY)
     fertility: Fertility = Field(default_factory=Fertility, description=L.FERTILITY)
     education: Education = Field(default_factory=Education, description=L.EDUCATION)
+    migration: Migration = Field(default_factory=Migration, description=L.MIGRATION)
