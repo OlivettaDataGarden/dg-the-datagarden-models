@@ -106,6 +106,7 @@ class PopulationV1Legends:
     MALE_FEMALE_RATIO = "Males to femal ratio. " "In number of males per 100 females."
     DENSITY = "Persons per square KM."
     CHANGE = "Population change in number of persons. " "In number of individuals per 1000 people."
+    GROWTH_RATE = "Growth rate as percentage of total population."
     NATURAL_CHANGE = "Births minus Deaths. In number of individuals."
     NATURAL_CHANGE_RATE = "Rate of Natural change per 1.000 persons."
     ETHNICITY = "Ethnicity distribution for the population."
@@ -123,6 +124,7 @@ class Population(DataGardenSubModel):
     male_to_female_ratio: Optional[float] = Field(default=None, description=L.MALE_FEMALE_RATIO)
     density: Optional[float] = Field(default=None, description=L.DENSITY)
     change: Optional[float] = Field(default=None, description=L.CHANGE)
+    growth_rate: Optional[float] = Field(default=None, description=L.GROWTH_RATE)
     natural_change: Optional[float] = Field(default=None, description=L.NATURAL_CHANGE)
     natural_change_rate: Optional[float] = Field(default=None, description=L.NATURAL_CHANGE_RATE)
     ethnicity: Ethnicity = Field(default_factory=Ethnicity, description=L.ETHNICITY)
@@ -137,6 +139,7 @@ class PopulationV1Keys(EthnicityKeys):
     MALE_TO_FEMALE_RATIO = "male_to_female_ratio"
     DENSITY = "density"
     CHANGE = "change"
+    GROWTH_RATE = "growth_rate"
     NATURAL_CHANGE = "natural_change"
     NATURAL_CHANGE_RATE = "natural_change_rate"
     ETHNICITY = "ethnicity"

@@ -5,7 +5,7 @@ from .base_demographics import DemographicsBaseKeys
 from .education import Education, EducationV1Keys
 from .fertility import Fertility, FertilityV1Keys
 from .life_expectancy import LifeExpectancy, LifeExpectancyV1Keys
-from .migration import Migration
+from .migration import Migration, MigrationV1Keys
 from .mortality import Mortality, MortalityV1Keys
 from .population import Population, PopulationV1Keys
 
@@ -18,6 +18,7 @@ class DemographicsV1Keys(
     MortalityV1Keys,
     DemographicsBaseKeys,
     EducationV1Keys,
+    MigrationV1Keys,
 ):
     POPULATION = "population"
     MORTALITY = "mortality"

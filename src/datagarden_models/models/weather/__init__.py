@@ -57,7 +57,7 @@ class WeatherObservationV1(DataGardenModel):
     mean_temp: Optional[float] = Field(None, ge=-70, le=70, description=L.MEAN_TEMP)
     rain_fall_mm: Optional[float] = Field(None, ge=0, description=L.RAIN_FALL_MM)
     sea_level_pressure_hpa: Optional[float] = Field(
-        None, ge=850, le=1100, description=L.SEA_LEVEL_PRESSURE_HPA
+        None, ge=550, le=1200, description=L.SEA_LEVEL_PRESSURE_HPA
     )
     cloud_cover_okta: Optional[int] = Field(None, ge=0, le=8, description=L.CLOUD_COVER_OKTA)
     temp_scale: Literal["CELSIUS", "FAHRENHEID"] = Field("CELSIUS", description=L.TEMP_SCALE)
@@ -74,3 +74,17 @@ class WeatherObservationV1(DataGardenModel):
 
     class Meta:
         exclude_fields_in_has_values_check: list[str] = [WeatherV1Keys.TEMP_SCALE]
+        fields_for_average_calculation: list[str] = [
+            "min_temp",
+            "max_temp",
+            "mean_temp",
+            "rain_fall_mm",
+            "sea_level_pressure_hpa",
+            "cloud_cover_okta",
+            "wind_speed_m_s",
+            "max_wind_gust_m_s",
+            "sun_hours",
+            "snow_depth_cm",
+            "radiation_per_square_m",
+            "humidity",
+        ]
