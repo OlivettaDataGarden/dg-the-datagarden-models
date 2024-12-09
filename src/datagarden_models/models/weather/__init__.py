@@ -24,7 +24,7 @@ class WeatherV1Keys(WeatherPeriodTotalsV1Keys):
     SNOW_DEPTH_CM = "snow_depth_cm"
     RADIATION_PER_SQUARE_M = "radiation_per_square_m"
     HUMIDITY = "humidity"
-    DATAGARDEN_MODEL_NAME = "WeatherData"
+    DATAGARDEN_MODEL_NAME = "Weather"
     PERIOD_TOTALS = "period_totals"
 
 
@@ -50,7 +50,7 @@ class WeatherV1Legends(DataGardenModelLegends):
 L = WeatherV1Legends
 
 
-class WeatherObservationV1(DataGardenModel):
+class WeatherV1(DataGardenModel):
     datagarden_model_version: str = Field("v1.0", frozen=True, description=L.DATAGARDEN_MODEL_VERSION)
     min_temp: Optional[float] = Field(None, ge=-70, le=70, description=L.MIN_TEMP)
     max_temp: Optional[float] = Field(None, ge=-70, le=70, description=L.MAX_TEMP)

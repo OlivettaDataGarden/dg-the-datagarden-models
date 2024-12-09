@@ -1,4 +1,4 @@
-from datagarden_models.models.weather import WeatherObservationV1, WeatherV1Keys
+from datagarden_models.models.weather import WeatherV1, WeatherV1Keys
 
 from .demographics import DemographicsV1, DemographicsV1Keys
 from .economics import EconomicsV1, EconomicsV1Keys
@@ -10,7 +10,7 @@ class DatagardenModels:
     DEMOGRAPHICS = DemographicsV1
     ECONOMICS = EconomicsV1
     HEALTH = HealthV1
-    WEATHER = WeatherObservationV1
+    WEATHER = WeatherV1
     HOUSEHOLD = HouseholdV1
 
 
