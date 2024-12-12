@@ -1,7 +1,8 @@
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
-from datagarden_models.models.economics.base_economics import EconomicsValue
+
+from .base_economics import EconomicsValue
 
 
 class PublicSpendingByCofogCategoryKeys:

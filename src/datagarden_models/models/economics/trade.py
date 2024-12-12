@@ -3,7 +3,8 @@ from typing import Annotated, Optional
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
-from datagarden_models.models.base.standard_models import EconomicsValue
+
+from .base_economics import EconomicsValue
 
 
 ########## Start Model defenition #########
