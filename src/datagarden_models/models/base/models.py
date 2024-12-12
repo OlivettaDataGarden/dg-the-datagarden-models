@@ -14,7 +14,7 @@ class DataGardenSubModel(BaseModel):
         # Recursively check if any field has a non-default or non-empty value
         data = data or self
         for field, value in data:
-            if field == "datagarden_model_version":
+            if field in ["datagarden_model_version", "metadata"]:
                 continue
             if field in self.Meta.exclude_fields_in_has_values_check:
                 continue

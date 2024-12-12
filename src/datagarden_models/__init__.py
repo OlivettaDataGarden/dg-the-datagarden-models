@@ -17,8 +17,8 @@ Objects for discovery of available dataclasses
 """
 
 from .models import DatagardenModelKeys, DatagardenModels
-from .models.base import DataGardenModel
-from .support import CountryStats
+from .models.base import DataGardenModel, DataGardenSubModel
+from .support import CountryStats, RegionalDataStats, RegionData
 
 
 def get_values_from_class(cls: type):
@@ -40,4 +40,8 @@ __all__ = [
     "AVAILABLE_MODELS",
     "AVAILABLE_MODEL_NAMES",
     "CountryStats",
+    "RegionData",
+    "RegionalDataStats",
+    "DataGardenModel",
+    "DataGardenSubModel",
 ]

@@ -25,7 +25,13 @@ class EconomicsValue(DataGardenSubModel):
     unit: int = Field(default=1, description=L.UNIT)
     currency: str = Field(default="EUR", description=L.CURRENCY)
 
+    class Meta:
+        exclude_fields_in_has_values_check = ["unit", "currency"]
+
 
 class EconomicsUnit(DataGardenSubModel):
     unit: int = Field(default=1, description=L.UNIT)
     currency: Optional[str] = Field(default="EUR", description=L.CURRENCY)
+
+    class Meta:
+        exclude_fields_in_has_values_check = ["unit", "currency"]

@@ -22,6 +22,9 @@ class PriceIndexFixed(DataGardenSubModel):
     index: Optional[float] = Field(default=None, description=PI.INDEX)
     reference_year: Optional[str] = Field(default=None, description=PI.REFERENCE_YEAR)
 
+    class Meta:
+        exclude_fields_in_has_values_check = ["reference_year"]
+
 
 class InflationV1Legends:
     INFLATION_YOY = "Inflation versus previous year in percent."

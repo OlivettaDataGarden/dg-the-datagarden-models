@@ -26,6 +26,9 @@ class PublicSpendingByCofogCategory(DataGardenSubModel):
         default_factory=dict, description=PSBCC.SHARE_OF_GDP_BY_COFOG_CATEGORY
     )
 
+    class Meta:
+        exclude_fields_in_has_values_check = ["currency"]
+
 
 class PublicSpendingLegends:
     BY_COFOG_CATEGORY = "Public spending by cofog category."

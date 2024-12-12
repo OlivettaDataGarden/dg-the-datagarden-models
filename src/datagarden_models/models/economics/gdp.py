@@ -58,6 +58,11 @@ class ValueAdded(DataGardenSubModel):
         description=LV.BY_ECONOMIC_ACTIVITY,
     )
 
+    class Meta:
+        exclude_fields_in_has_values_check = [
+            "units",
+        ]
+
 
 ########## Start Model defenition #########
 class GDPConstantLegends:
@@ -85,10 +90,10 @@ class GDPAtConstantPrices(DataGardenSubModel):
 
 
 class GDPV1Legends:
-    TOTAL_GDP = "Total GDP at current value for the region."
+    TOTAL_GDP = "Total annual GDP at current value for the region."
     GDP_PER_INHABITANT = "GDP per inhabitant current value."
     VALUE_ADDED = "Economic value added current value per region."
-    GDP_AT_CONSTANT_PRICES = "GDP figures at constant prices."
+    GDP_AT_CONSTANT_PRICES = "Total annual GDP at current value for the region."
     YOY_GROWTH = "Growth versus previous year in percent."
     YOY_GROWTH_PER_CAPITA = "Growth versus previous year in percent per capita."
 

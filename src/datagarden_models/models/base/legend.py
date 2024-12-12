@@ -66,12 +66,21 @@ class Legend:
     legend : str
         Description of the model or attribute
 
-    Methods
-    -------
+    Properties
+    ----------
     attributes
         Get list of all field names in the legend
     has_attributes
         Check if the legend has any attributes
+
+    sub_model_names
+        Get list of names for all attribute that represent sub models
+
+    sub_models
+        Get list of all attribute that represent sub models
+
+    non_sub_model_attributes
+        Get list of all attributes that are not sub models
     """
 
     def __init__(
@@ -101,6 +110,52 @@ class Legend:
                 f"(with attributes [{', '.join(self.field_legends.keys())}])"
             )
         return f"Attribute <{self.attribute}> : {self.legend}"
+
+    @property
+    def sub_models(self) -> list["Legend"]:
+        return [legend for legend in self.field_legends.values() if legend.field_legends]
+
+    @property
+    def non_sub_model_attributes(self) -> list["Legend"]:
+        return [legend for legend in self.field_legends.values() if not legend.field_legends]
+
+    def summary(self) -> dict[str, Union[str, dict[str, Any]]]:
+        result: dict[str, Union[str, dict[str, Any]]] = {}
+        if self.sub_models:
+            result["sub_models"] = {
+                str(sub_model.attribute): {
+                    "attributes": list(sub_model.field_legends.keys()),
+                    "legend": sub_model.legend,
+                }
+                for sub_model in self.sub_models
+                if sub_model.attribute is not None
+            }
+        if self.non_sub_model_attributes:
+            result["value_attributes"] = {
+                str(attribute.attribute): attribute.legend
+                for attribute in self.non_sub_model_attributes
+                if attribute.attribute is not None
+            }
+        return result
+
+    def show_summary(self):
+        summary = self.summary()
+        if "sub_models" in summary:
+            print("###### Submodels ######")
+            for sub_model_name, sub_model_data in summary["sub_models"].items():
+                print(f"Submodel: {sub_model_name} #")
+                print("    ", sub_model_data["legend"])
+                print("     With attributes:")
+                for attribute_name in sub_model_data["attributes"]:
+                    print(f"        - {attribute_name}")
+                print()
+
+        if "value_attributes" in summary:
+            max_length = max(len(attribute_name) for attribute_name in summary["value_attributes"].keys()) + 2
+            print("###### Value attributes ######")
+            print()
+            for attribute_name, attribute_legend in summary["value_attributes"].items():
+                print(f"{attribute_name} {(max_length-len(attribute_name))*' '} : {attribute_legend}")
 
     def is_base_model(self, annotation):
         # specific case for py 310 as issubclass(annotation, BaseModel) can not handle
@@ -164,8 +219,12 @@ class Legend:
 
     @property
     def attributes_as_str(self) -> str:
-        return ", ".join(list(self.field_legends.keys()))
+        return ", ".join(self.attributes)
 
     @property
     def type_class_name(self) -> str:
         return self._type_name
+
+    @property
+    def sub_model_names(self) -> list[str]:
+        return [sub_model.attribute for sub_model in self.sub_models if sub_model.attribute is not None]
