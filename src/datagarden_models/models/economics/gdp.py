@@ -11,11 +11,13 @@ from .base_economics import EconomicsValue
 class AddedValueByEconomicActivityKeys:
     CLASSIFICATION_TYPE = "classification_type"
     AS_PERCENTAGE = "as_percentage_of_gdp"
+    VALUE = "value"
 
 
 class AddedValueByEconomicActivityLegends:
     CLASSIFICATION_TYPE = "Formal classification type of the added value."
     AS_PERCENTAGE = "Added value for catagery As percentage of GDP."
+    VALUE = "Added value for category in current and/or constant value."
 
 
 AVC = AddedValueByEconomicActivityLegends
@@ -25,6 +27,7 @@ class AddedValueByEconomicActivity(DataGardenSubModel):
     classification_type: Optional[Literal["ISICV3", "ISICV4", "NAICS2017", "NACE2"]] = Field(
         default=None, description=AVC.CLASSIFICATION_TYPE
     )
+    value: dict[str, EconomicsValue] = Field(default_factory=dict, description=AVC.VALUE)
     as_percentage_of_gdp: dict[str, float] = Field(default_factory=dict, description=AVC.AS_PERCENTAGE)
 
 
@@ -32,17 +35,12 @@ class AddedValueByEconomicActivity(DataGardenSubModel):
 class ValueAddedKeys:
     UNITS = "units"
     TOTAL = "total"
-    BY_NACE_ACTIVITY = "by_nace_activity"
     BY_ECONOMIC_ACTIVITY = "by_economic_activity"
 
 
 class ValueAddedLegends:
     TOTAL = "Total value added in given units."
     UNITS = "Currency and units."
-    BY_NACE_ACTIVITY = (
-        "By NACE economic activity. See also "
-        "https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Statistical_classification_of_economic_activities_in_the_European_Community_(NACE)"
-    )
     BY_ECONOMIC_ACTIVITY = "By activity value category based upon either NACE or ISIC or NAICS."
 
 
