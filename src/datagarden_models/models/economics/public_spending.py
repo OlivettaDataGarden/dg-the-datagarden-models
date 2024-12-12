@@ -5,14 +5,12 @@ from datagarden_models.models.economics.base_economics import EconomicsValue
 
 
 class PublicSpendingByCofogCategoryKeys:
-    CURRENCY = "currency"
     VALUE = "value"
     SHARE_OF_GDP = "share_of_gdp"
 
 
 class PublicSpendingByCofogCategoryLegends:
-    CURRENCY = "Currency of the public spending value."
-    VALUE_BY_COFOG_CATEGORY = "Public spending by cofog category."
+    VALUE_BY_COFOG_CATEGORY = "Public spending by cofog category. In current and/or constant value."
     SHARE_OF_GDP_BY_COFOG_CATEGORY = "Share of GDP by cofog category."
 
 
@@ -20,19 +18,15 @@ PSBCC = PublicSpendingByCofogCategoryLegends
 
 
 class PublicSpendingByCofogCategory(DataGardenSubModel):
-    currency: str = Field(default="EUR", description=PSBCC.CURRENCY)
-    value: dict[str, float] = Field(default_factory=dict, description=PSBCC.VALUE_BY_COFOG_CATEGORY)
+    value: dict[str, EconomicsValue] = Field(default_factory=dict, description=PSBCC.VALUE_BY_COFOG_CATEGORY)
     share_of_gdp: dict[str, float] = Field(
         default_factory=dict, description=PSBCC.SHARE_OF_GDP_BY_COFOG_CATEGORY
     )
 
-    class Meta:
-        exclude_fields_in_has_values_check = ["currency"]
-
 
 class PublicSpendingLegends:
     BY_COFOG_CATEGORY = "Public spending by cofog category."
-    TOTAL = "Total public spending."
+    TOTAL = "Total public spending. Incurrent and/or constant value."
 
 
 PS = PublicSpendingLegends

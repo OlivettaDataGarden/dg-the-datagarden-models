@@ -84,18 +84,20 @@ class ImportExportKeys:
 
 
 class ImportExportLegends:
-    SERVICES = "Value for services trade."
-    GOODS = "Value for goods trade."
-    GOODS_AND_SERVICES = "Value for services and goods trade."
+    SERVICES = "Value for services trade. In current and/or constant value."
+    GOODS = "Value for goods trade. In current and/or constant value."
+    GOODS_AND_SERVICES = "Value for services and goods trade. In current and/or constant value."
 
 
 L_IMP_EXP = ImportExportLegends
 
 
 class Import(DataGardenSubModel):
-    goods: Optional[float] = Field(default=None, description=L_IMP_EXP.GOODS)
-    services: Optional[float] = Field(default=None, description=L_IMP_EXP.SERVICES)
-    goods_and_services: Optional[float] = Field(default=None, description=L_IMP_EXP.GOODS_AND_SERVICES)
+    goods: Optional[EconomicsValue] = Field(default=None, description=L_IMP_EXP.GOODS)
+    services: Optional[EconomicsValue] = Field(default=None, description=L_IMP_EXP.SERVICES)
+    goods_and_services: Optional[EconomicsValue] = Field(
+        default=None, description=L_IMP_EXP.GOODS_AND_SERVICES
+    )
 
 
 class Export(Import): ...
@@ -103,9 +105,9 @@ class Export(Import): ...
 
 ########## Start Model defenition #########
 class TradeV1Legends:
-    IMPORTS = "Imports information."
-    EXPORTS = "Exports information."
-    TRADE_BALANCE = "Trade balance information."
+    IMPORTS = "Imports. In current and/or constant value."
+    EXPORTS = "Exports. In current and/or constant value."
+    TRADE_BALANCE = "Trade balance. In current and/or constant value."
 
 
 L_TRADE_V1 = TradeV1Legends
