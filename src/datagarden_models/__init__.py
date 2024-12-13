@@ -18,7 +18,7 @@ Objects for discovery of available dataclasses
 
 from .models import DatagardenModelKeys, DatagardenModels
 from .models.base import DataGardenModel, DataGardenSubModel
-from .support import CountryStats, RegionalDataStats, RegionData
+from .support import ContinentStats, CountryStats, RegionalDataStats, RegionData
 
 
 def get_values_from_class(cls: type):
@@ -42,6 +42,7 @@ __all__ = [
     "CountryStats",
     "RegionData",
     "RegionalDataStats",
+    "ContinentStats",
     "DataGardenModel",
     "DataGardenSubModel",
 ]
