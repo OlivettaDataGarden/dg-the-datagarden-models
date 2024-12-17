@@ -1,8 +1,54 @@
+from typing import Optional
+
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
 
-from .base_demographics import AgeGender
+
+class AgeGenderLifeExpectancyLegends:
+    AGE_GENDER_MALE = (
+        "Life expectancy for males. " "In number years still expected to live per age or age group."
+    )
+    AGE_GENDER_FEMALE = (
+        "Life expectancy for females. " "In number years still expected to live per age or age group."
+    )
+    AGE_GENDER_TOTAL = (
+        "Life expectancy for total population. "
+        "In number years still expected to live per age or age group."
+    )
+
+
+AGL = AgeGenderLifeExpectancyLegends
+
+
+class LifeExpectancyByAgeGender:
+    male: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_MALE)
+    female: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_FEMALE)
+    total: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_TOTAL)
+
+
+class LifeExpectancyAtBirthLegends:
+    MALE = (
+        "Male Life expectancy at birth for birthyear of record period. "
+        "In years expected to live when born."
+    )
+    FEMALE = (
+        "Female Life expectancy at birth for birthyear of record period. "
+        "In years expected to live when born."
+    )
+    TOTAL = (
+        "Total Life expectancy at birth for birthyear of record period. "
+        "In years expected to live when born."
+    )
+
+
+LEB = LifeExpectancyAtBirthLegends
+
+
+class LifeExpectancyAtBirth(DataGardenSubModel):
+    male: Optional[float] = Field(default=None, description=LEB.MALE)
+    female: Optional[float] = Field(default=None, description=LEB.FEMALE)
+    total: Optional[float] = Field(default=None, description=LEB.TOTAL)
 
 
 class LifeExpectancyV1Keys:
@@ -23,10 +69,10 @@ L = LifeExpectancyV1Legends
 
 
 class LifeExpectancy(DataGardenSubModel):
-    life_expectancy_at_birth: AgeGender = Field(
-        default_factory=AgeGender, description=L.LIFE_EXPECTANCY_AT_BIRTH
+    life_expectancy_at_birth: LifeExpectancyAtBirth = Field(
+        default_factory=LifeExpectancyAtBirth, description=L.LIFE_EXPECTANCY_AT_BIRTH
     )
 
-    remaining_life_expectancy: AgeGender = Field(
-        default_factory=AgeGender, description=L.REMAINING_LIFE_EXPECTANCY
+    remaining_life_expectancy: LifeExpectancyByAgeGender = Field(
+        default_factory=LifeExpectancyByAgeGender, description=L.REMAINING_LIFE_EXPECTANCY
     )
