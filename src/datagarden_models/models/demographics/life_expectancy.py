@@ -21,7 +21,7 @@ class AgeGenderLifeExpectancyLegends:
 AGL = AgeGenderLifeExpectancyLegends
 
 
-class LifeExpectancyByAgeGender:
+class LifeExpectancyByAgeGender(DataGardenSubModel):
     male: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_MALE)
     female: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_FEMALE)
     total: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_TOTAL)
