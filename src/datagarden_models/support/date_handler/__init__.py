@@ -1,3 +1,28 @@
+"""
+Module for handling period and period types. Main task is to normalize string and date representations
+of periods in compliance with the period type.
+
+For example for period type "week" the following strings are valid:
+- 2024-W01
+- 2024W01
+- 2024-W1
+- 2024W1
+- 2024-01-01
+- 2024-01-01
+
+and all converted to either "2024W01" or "2024-01-01" or datetime(2024, 1, 1, 0, 0, 0).
+
+as jan 1 is the monday of the first week of 2024.
+
+Simmilar conversion are done for other period types.
+"2024" or "2024-01-01" for year
+"2024Q3" or "2024-07-01" for quarter
+"2024M03" or "2024-03-01" for month
+"2024-01-01" for day
+
+the datetime format always returns the first day of the givenperiod.
+"""
+
 from .day_normalizer import DayPeriodTransformer
 from .month_normalizer import MonthPeriodTransformer
 from .quarter_normalizer import QuarterPeriodTransformer
