@@ -6,7 +6,7 @@ from datagarden_models.support.date_handler.period_type_normalizer import Period
 class TestPeriodTypeNormalizer:
     @pytest.fixture
     def normalizer(self):
-        return PeriodTypeNormalizer()
+        return PeriodTypeNormalizer
 
     @pytest.mark.parametrize(
         "input_period,expected",
