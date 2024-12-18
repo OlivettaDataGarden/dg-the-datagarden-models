@@ -17,7 +17,6 @@ def utc_datetime(dt: date | datetime) -> datetime:
         raise TypeError(f"Invalid date format: {dt}, dt needs to be of type datetime, date or str")
 
     # Ensure the datetime is timezone-aware and in UTC
-    print(dt)
     if dt.tzinfo is None:
         dt = dt.replace(tzinfo=dt_timezone.utc)
     else:
