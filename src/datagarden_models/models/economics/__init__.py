@@ -4,12 +4,19 @@ from ..base import DataGardenModel, DataGardenModelLegends
 from .base_economics import EconomicBaseKeys, EconomicMetaDataKeys, EconomicsMetaData
 from .gdp import GDP, GDPV1Keys
 from .inflation import Inflation, InflationV1Keys
+from .labor_market import LaborMarketStatus, LaborMarketStatusKeys
 from .public_spending import PublicSpendingV1, PublicSpendingV1Keys
 from .trade import TradeV1, TradeV1Keys
 
 
 class EconomicsV1Keys(
-    GDPV1Keys, EconomicBaseKeys, InflationV1Keys, TradeV1Keys, PublicSpendingV1Keys, EconomicMetaDataKeys
+    GDPV1Keys,
+    EconomicBaseKeys,
+    InflationV1Keys,
+    TradeV1Keys,
+    PublicSpendingV1Keys,
+    EconomicMetaDataKeys,
+    LaborMarketStatusKeys,
 ):
     GDP = "gdp"
     ECONOMICS_METADATA = "economics_metadata"
@@ -17,6 +24,7 @@ class EconomicsV1Keys(
     INFLATION = "inflation"
     TRADE = "trade"
     PUBLIC_SPENDING = "public_spending"
+    LABOR_MARKET_STATUS = "labor_market_status"
 
 
 class EconomicsV1Legends(DataGardenModelLegends):
@@ -24,6 +32,7 @@ class EconomicsV1Legends(DataGardenModelLegends):
     INFLATION = "Inflation numbers"
     TRADE = "Trade statistics"
     PUBLIC_SPENDING = "Public spending"
+    LABOR_MARKET_STATUS = "Labor market status"
     ECONOMICS_METADATA = "Metadata about currency, units and reference year used for the data."
     MODEL_LEGEND = "Economic data for a region. "
 
@@ -38,3 +47,6 @@ class EconomicsV1(DataGardenModel):
     inflation: Inflation = Field(default_factory=Inflation, description=L.INFLATION)
     trade: TradeV1 = Field(default_factory=TradeV1, description=L.TRADE)
     public_spending: PublicSpendingV1 = Field(default_factory=PublicSpendingV1, description=L.PUBLIC_SPENDING)
+    labor_market_status: LaborMarketStatus = Field(
+        default_factory=LaborMarketStatus, description=L.LABOR_MARKET_STATUS
+    )
