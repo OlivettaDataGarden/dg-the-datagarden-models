@@ -16,6 +16,11 @@ class LaborMarketStatusLegends:
     )
     INACTIVE = "Total number of inactive persons."
     INACTIVE_RATE = "Percentage of inactive persons as percentage of working age population. (age 16-64)"
+    CLAIM_UNEMPLOYMENT_BENEFIT = "Total number of persons claiming unemployment benefits."
+    CLAIM_UNEMPLOYMENT_BENEFIT_RATE = (
+        "Percentage of persons claiming unemployment benefits as percentage of working age population. "
+        "(age 16-64)"
+    )
 
 
 L = LaborMarketStatusLegends
@@ -28,6 +33,12 @@ class LaborMarketStatus(DataGardenSubModel):
     unemployment_rate: Optional[float] = Field(default=None, description=L.UNEMPLOYMENT_RATE)
     inactive: Optional[float] = Field(default=None, description=L.INACTIVE)
     inactive_rate: Optional[float] = Field(default=None, description=L.INACTIVE_RATE)
+    claim_unemployment_benefit: Optional[float] = Field(
+        default=None, description=L.CLAIM_UNEMPLOYMENT_BENEFIT
+    )
+    claim_unemployment_benefit_rate: Optional[float] = Field(
+        default=None, description=L.CLAIM_UNEMPLOYMENT_BENEFIT_RATE
+    )
 
 
 class LaborMarketStatusKeys:
@@ -37,3 +48,5 @@ class LaborMarketStatusKeys:
     UNEMPLOYMENT_RATE = "unemployment_rate"
     INACTIVE = "inactive"
     INACTIVE_RATE = "inactive_rate"
+    CLAIM_UNEMPLOYMENT_BENEFIT = "claim_unemployment_benefit"
+    CLAIM_UNEMPLOYMENT_BENEFIT_RATE = "claim_unemployment_benefit_rate"
