@@ -16,6 +16,7 @@ class HouseholdIncomeLegends:
     AVERAGE_INCOME = "Average household income."
     PERCENTAGE_HIGH_INCOME = "Percentage of households with high income."
     PERCENTAGE_LOW_INCOME = "Percentage of households with low income."
+    GDHI_PER_PERSON = "Gross Disposable Household Income per person."
 
 
 HI = HouseholdIncomeLegends
@@ -25,12 +26,14 @@ class HouseholdIncome(DataGardenSubModel):
     average_income: Optional[EconomicsValue] = Field(default=None, description=HI.AVERAGE_INCOME)
     percentage_high_income: Optional[float] = Field(default=None, description=HI.PERCENTAGE_HIGH_INCOME)
     percentage_low_income: Optional[float] = Field(default=None, description=HI.PERCENTAGE_LOW_INCOME)
+    gdhi_per_person: Optional[float] = Field(default=None, description=HI.GDHI_PER_PERSON)
 
 
 class HouseholdIncomeKeys:
     AVERAGE_INCOME = "average_income"
     PERCENTAGE_HIGH_INCOME = "percentage_high_income"
     PERCENTAGE_LOW_INCOME = "percentage_low_income"
+    GDHI_PER_PERSON = "gdhi_per_person"
 
 
 ###########################################
