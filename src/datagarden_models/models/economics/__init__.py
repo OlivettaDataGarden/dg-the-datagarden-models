@@ -5,6 +5,7 @@ from .base_economics import EconomicBaseKeys, EconomicMetaDataKeys, EconomicsMet
 from .gdp import GDP, GDPV1Keys
 from .inflation import Inflation, InflationV1Keys
 from .labor_market import LaborMarketStatus, LaborMarketStatusKeys
+from .productivity import Productivity, ProductivityKeys
 from .public_spending import PublicSpendingV1, PublicSpendingV1Keys
 from .trade import TradeV1, TradeV1Keys
 
@@ -17,6 +18,7 @@ class EconomicsV1Keys(
     PublicSpendingV1Keys,
     EconomicMetaDataKeys,
     LaborMarketStatusKeys,
+    ProductivityKeys,
 ):
     GDP = "gdp"
     ECONOMICS_METADATA = "economics_metadata"
@@ -25,6 +27,7 @@ class EconomicsV1Keys(
     TRADE = "trade"
     PUBLIC_SPENDING = "public_spending"
     LABOR_MARKET_STATUS = "labor_market_status"
+    PRODUCTIVITY = "productivity"
 
 
 class EconomicsV1Legends(DataGardenModelLegends):
@@ -33,6 +36,7 @@ class EconomicsV1Legends(DataGardenModelLegends):
     TRADE = "Trade statistics"
     PUBLIC_SPENDING = "Public spending"
     LABOR_MARKET_STATUS = "Labor market status"
+    PRODUCTIVITY = "Productivity statistics"
     ECONOMICS_METADATA = "Metadata about currency, units and reference year used for the data."
     MODEL_LEGEND = "Economic data for a region. "
 
@@ -50,3 +54,4 @@ class EconomicsV1(DataGardenModel):
     labor_market_status: LaborMarketStatus = Field(
         default_factory=LaborMarketStatus, description=L.LABOR_MARKET_STATUS
     )
+    productivity: Productivity = Field(default_factory=Productivity, description=L.PRODUCTIVITY)
