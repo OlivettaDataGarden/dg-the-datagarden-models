@@ -4,6 +4,7 @@ from ..base import DataGardenModel, DataGardenModelLegends
 from .base_economics import EconomicBaseKeys, EconomicMetaDataKeys, EconomicsMetaData
 from .gdp import GDP, GDPV1Keys
 from .inflation import Inflation, InflationV1Keys
+from .investment import Investment, InvestmentKeys
 from .labor_market import LaborMarketStatus, LaborMarketStatusKeys
 from .productivity import Productivity, ProductivityKeys
 from .public_spending import PublicSpendingV1, PublicSpendingV1Keys
@@ -19,6 +20,7 @@ class EconomicsV1Keys(
     EconomicMetaDataKeys,
     LaborMarketStatusKeys,
     ProductivityKeys,
+    InvestmentKeys,
 ):
     GDP = "gdp"
     ECONOMICS_METADATA = "economics_metadata"
@@ -28,6 +30,7 @@ class EconomicsV1Keys(
     PUBLIC_SPENDING = "public_spending"
     LABOR_MARKET_STATUS = "labor_market_status"
     PRODUCTIVITY = "productivity"
+    INVESTMENT = "investment"
 
 
 class EconomicsV1Legends(DataGardenModelLegends):
@@ -37,6 +40,7 @@ class EconomicsV1Legends(DataGardenModelLegends):
     PUBLIC_SPENDING = "Public spending"
     LABOR_MARKET_STATUS = "Labor market status"
     PRODUCTIVITY = "Productivity statistics"
+    INVESTMENT = "Investment statistics"
     ECONOMICS_METADATA = "Metadata about currency, units and reference year used for the data."
     MODEL_LEGEND = "Economic data for a region. "
 
@@ -55,3 +59,4 @@ class EconomicsV1(DataGardenModel):
         default_factory=LaborMarketStatus, description=L.LABOR_MARKET_STATUS
     )
     productivity: Productivity = Field(default_factory=Productivity, description=L.PRODUCTIVITY)
+    investment: Investment = Field(default_factory=Investment, description=L.INVESTMENT)
