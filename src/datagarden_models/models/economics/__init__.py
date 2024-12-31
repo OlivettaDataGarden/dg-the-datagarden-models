@@ -61,7 +61,7 @@ class EconomicsV1(DataGardenModel):
     productivity: Productivity = Field(default_factory=Productivity, description=L.PRODUCTIVITY)
     investment: Investment = Field(default_factory=Investment, description=L.INVESTMENT)
 
-    class Meta:
+    class Meta(DataGardenModel.Meta):
         fields_to_include_in_data_dump: list[str] = DataGardenModel.Meta.fields_to_include_in_data_dump + [
             "economics_metadata"
         ]

@@ -20,7 +20,7 @@ class LocalFacilities(DataGardenSubModel):
     unit: str = Field(default="km", description=L.UNIT)
     distance_to_nearest: dict[str, float] = Field(default=dict, description=L.DISTANCE_TO_NEAREST)
 
-    class Meta:
+    class Meta(DataGardenSubModel.Meta):
         exclude_fields_in_has_values_check = [
             "unit",
         ]

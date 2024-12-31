@@ -10,7 +10,7 @@ class EconomicsData(DataGardenSubModel):
     currency: str = Field(default="EUR")
     value: Optional[float] = Field(default=None)
 
-    class Meta:
+    class Meta(DataGardenSubModel.Meta):
         exclude_fields_in_has_values_check = ["unit", "reference_year", "currency"]
 
 
@@ -93,6 +93,7 @@ def test_my_second_data_dump_has_economics_datal():
     This test is to check if the data_dump method is working correctly and does not include empty sub models
     """
     model = MySecondModel(my_sub_model=MySubModel(metric=EconomicsData(value=1)))
+    print(model.Meta.fields_to_include_in_data_dump)
     assert "my_model" not in list(model.data_dump().keys())
     assert "my_sub_model" in list(model.data_dump().keys())
     assert model.data_dump()["my_sub_model"]["metric"]["value"] == 1
