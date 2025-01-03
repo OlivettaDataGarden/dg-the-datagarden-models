@@ -37,6 +37,7 @@ class DataGardenSubModel(BaseModel):
 
     class Meta:
         exclude_fields_in_has_values_check: list[str] = []
+        fields_to_include_in_data_dump: list[str] = ["datagarden_model_version", "metadata"]
 
     def has_values(self, data: BaseModel | None = None) -> bool:
         # Recursively check if any field has a non-default or non-empty value
@@ -68,7 +69,9 @@ class DataGardenSubModel(BaseModel):
     def data_dump(self) -> dict:
         result = {}
         for field, value in self:
-            if isinstance(value, DataGardenSubModel):
+            if field in self.Meta.fields_to_include_in_data_dump:
+                result[field] = value
+            elif isinstance(value, DataGardenSubModel):
                 if value.has_values():
                     result[field] = value.data_dump()
             elif value or value == 0 or value is False:  # This will check for truthy values (non-empty)

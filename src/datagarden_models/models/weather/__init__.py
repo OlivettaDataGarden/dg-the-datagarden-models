@@ -72,7 +72,7 @@ class WeatherV1(DataGardenModel):
     humidity: Optional[float] = Field(None, ge=0, le=100, description=L.HUMIDITY)
     period_totals: Optional[WeatherPeriodTotalsV1] = Field(None, description=L.PERIOD_TOTALS)
 
-    class Meta:
+    class Meta(DataGardenModel.Meta):
         exclude_fields_in_has_values_check: list[str] = [WeatherV1Keys.TEMP_SCALE]
         fields_for_average_calculation: list[str] = [
             "min_temp",
