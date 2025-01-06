@@ -4,6 +4,7 @@ from ..base import DataGardenModel, DataGardenModelLegends
 from .base_health import HealthBaseKeys
 from .death_statistics import DeathStatistics, DeathStatisticsKeys
 from .health_care_facilities import HealthCareFacilities, HealthCareFacilitiesKeys
+from .monitor import HealthMonitor, HealthMonitorKeys
 from .vacination_coverage import VaccinationCoverage, VaccinationCoverageKeys
 
 
@@ -12,23 +13,21 @@ class HealthV1Keys(
     DeathStatisticsKeys,
     HealthCareFacilitiesKeys,
     VaccinationCoverageKeys,
+    HealthMonitorKeys,
 ):
     DEATH_STATISTICS = "death_statistics"
     HEALTH_CARE_FACILITIES = "health_care_facilities"
     VACINATION_COVERAGE = "vacination_coverage"
+    HEALTH_MONITOR = "health_monitor"
     DATAGARDEN_MODEL_NAME = "Health"
 
 
 class HealthV1Legends(DataGardenModelLegends):
-    MODEL_LEGEND: str = "Health data for a region. "
-    DEATH_RATE_BY_IDC10 = (
-        "Death rate by IDC10 categorization, see https://icd.who.int/browse10/2010/en"
-        " (for detailed description of IDC10 categories (keys in this dataset))"
-        " Death rate in deaths per 100.000 population."
-    )
-    DEATH_STATISTICS = "Death statistics for the rgion"
-    HEALTH_CARE_FACILITIES = "Healthcare facilities available in the region"
-    VACINATION_COVERAGE = "Vaccination coverage per region"
+    MODEL_LEGEND: str = "Health data for a region."
+    DEATH_STATISTICS = "Death statistics for the rgion."
+    HEALTH_CARE_FACILITIES = "Healthcare facilities available in the region."
+    VACINATION_COVERAGE = "Vaccination coverage per region."
+    HEALTH_MONITOR = "Health monitor data for the region."
 
 
 L = HealthV1Legends
@@ -44,3 +43,4 @@ class HealthV1(DataGardenModel):
     vacination_coverage: VaccinationCoverage = Field(
         default_factory=VaccinationCoverage, description=L.VACINATION_COVERAGE
     )
+    health_monitor: HealthMonitor = Field(default_factory=HealthMonitor, description=L.HEALTH_MONITOR)
