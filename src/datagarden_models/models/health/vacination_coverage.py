@@ -31,7 +31,7 @@ class VaccinationCoverageKeys(VaccinationDetailsKeys):
 
 
 class VaccinationCoverageLegends:
-    GRADE_PER_TYPE = "Grade of vaccination per type of vaccine. " "Type will ususally be a regional key."
+    GRADE_PER_TYPE = "Grade of vaccination per type of vaccine. Type will ususally be a regional key."
 
 
 L = VaccinationCoverageLegends

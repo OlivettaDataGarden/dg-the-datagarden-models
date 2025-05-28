@@ -155,7 +155,7 @@ class Legend:
             print("###### Value attributes ######")
             print()
             for attribute_name, attribute_legend in summary["value_attributes"].items():
-                print(f"{attribute_name} {(max_length-len(attribute_name))*' '} : {attribute_legend}")
+                print(f"{attribute_name} {(max_length - len(attribute_name)) * ' '} : {attribute_legend}")
 
     def is_base_model(self, annotation):
         # specific case for py 310 as issubclass(annotation, BaseModel) can not handle

@@ -8,13 +8,13 @@ from .base_demographics import AgeGender
 
 
 class MortalityV1Legends:
-    DEATHS_BY_AGE = "Death count per year. " "In number of individuals per age or age group."
+    DEATHS_BY_AGE = "Death count per year. In number of individuals per age or age group."
     MORTALITY_BY_AGE = "Mortality before age or within age group per 1000 of live births."
-    TOTAL_DEATHS = "Total number of deaths in a year. " "In number of individuals."
-    INFANT_DEATHS = "Number of infant deaths under age 1. " "In number of individuals."
+    TOTAL_DEATHS = "Total number of deaths in a year. In number of individuals."
+    INFANT_DEATHS = "Number of infant deaths under age 1. In number of individuals."
     INFANT_DEATH_RATE = "Infant death rate per 1000 live births."
-    TOTAL_MALE_DEATHS = "Total number of male deaths in a year. " "In number of individuals."
-    TOTAL_FEMALE_DEATHS = "Total number of female deaths in a year. " "In number of individuals."
+    TOTAL_MALE_DEATHS = "Total number of male deaths in a year. In number of individuals."
+    TOTAL_FEMALE_DEATHS = "Total number of female deaths in a year. In number of individuals."
     DEATH_RATE = "Death rate per 1000 persons. "
 
 

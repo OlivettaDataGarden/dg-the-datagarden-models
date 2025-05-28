@@ -9,9 +9,9 @@ class DemographicsBaseKeys:
 
 
 class DemographicsBaseLegends:
-    AGE_GENDER_MALE = "Number of males. " "In number of individuals per age or age group."
-    AGE_GENDER_FEMALE = "Number of females. " "In number of individuals per age or age group."
-    AGE_GENDER_TOTAL = "Total number of individuals. " "In number of individuals per age or age group."
+    AGE_GENDER_MALE = "Number of males. In number of individuals per age or age group."
+    AGE_GENDER_FEMALE = "Number of females. In number of individuals per age or age group."
+    AGE_GENDER_TOTAL = "Total number of individuals. In number of individuals per age or age group."
 
 
 L = DemographicsBaseLegends

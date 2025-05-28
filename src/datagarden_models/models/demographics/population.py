@@ -98,14 +98,14 @@ class Ethnicity(DataGardenSubModel):
 ###########################################
 class PopulationV1Legends:
     BY_AGE_GENDER = "Age gender distribution for males and females. "
-    TOTAL = "Total population. " "In number of individuals."
+    TOTAL = "Total population. In number of individuals."
 
-    TOTAL_MALE = "Total number of males in the population. " "In number of individuals."
-    TOTAL_FEMALE = "Total number of females in the population. " "In number of individuals."
-    POPULATION_TOTAL = "Total number of persons in the population. " "In number of individuals."
-    MALE_FEMALE_RATIO = "Males to femal ratio. " "In number of males per 100 females."
+    TOTAL_MALE = "Total number of males in the population. In number of individuals."
+    TOTAL_FEMALE = "Total number of females in the population. In number of individuals."
+    POPULATION_TOTAL = "Total number of persons in the population. In number of individuals."
+    MALE_FEMALE_RATIO = "Males to femal ratio. In number of males per 100 females."
     DENSITY = "Persons per square KM."
-    CHANGE = "Population change in number of persons. " "In number of individuals per 1000 people."
+    CHANGE = "Population change in number of persons. In number of individuals per 1000 people."
     GROWTH_RATE = "Growth rate as percentage of total population."
     NATURAL_CHANGE = "Births minus Deaths. In number of individuals."
     NATURAL_CHANGE_RATE = "Rate of Natural change per 1.000 persons."

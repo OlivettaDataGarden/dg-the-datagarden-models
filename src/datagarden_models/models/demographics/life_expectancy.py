@@ -7,14 +7,13 @@ from datagarden_models.models.base import DataGardenSubModel
 
 class AgeGenderLifeExpectancyLegends:
     AGE_GENDER_MALE = (
-        "Life expectancy for males. " "In number years still expected to live per age or age group."
+        "Life expectancy for males. In number years still expected to live per age or age group."
     )
     AGE_GENDER_FEMALE = (
-        "Life expectancy for females. " "In number years still expected to live per age or age group."
+        "Life expectancy for females. In number years still expected to live per age or age group."
     )
     AGE_GENDER_TOTAL = (
-        "Life expectancy for total population. "
-        "In number years still expected to live per age or age group."
+        "Life expectancy for total population. In number years still expected to live per age or age group."
     )
 
 
@@ -29,16 +28,13 @@ class LifeExpectancyByAgeGender(DataGardenSubModel):
 
 class LifeExpectancyAtBirthLegends:
     MALE = (
-        "Male Life expectancy at birth for birthyear of record period. "
-        "In years expected to live when born."
+        "Male Life expectancy at birth for birthyear of record period. In years expected to live when born."
     )
     FEMALE = (
-        "Female Life expectancy at birth for birthyear of record period. "
-        "In years expected to live when born."
+        "Female Life expectancy at birth for birthyear of record period. In years expected to live when born."
     )
     TOTAL = (
-        "Total Life expectancy at birth for birthyear of record period. "
-        "In years expected to live when born."
+        "Total Life expectancy at birth for birthyear of record period. In years expected to live when born."
     )
 
 
@@ -58,10 +54,10 @@ class LifeExpectancyV1Keys:
 
 class LifeExpectancyV1Legends:
     LIFE_EXPECTANCY_AT_BIRTH = (
-        "Life expectancy per age or age group at birth. " "In years expected to live when born"
+        "Life expectancy per age or age group at birth. In years expected to live when born"
     )
     REMAINING_LIFE_EXPECTANCY = (
-        "Life expectancy per age or age group at current age. " "In years expected to live as of current age"
+        "Life expectancy per age or age group at current age. In years expected to live as of current age"
     )
 
 
