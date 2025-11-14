@@ -1,6 +1,6 @@
 [project]
 name = "the-datagarden-models"
-version = "1.7.8"
+version = "1.7.9"
 description = "Base data models for the datagarden."
 readme = "README.rst"
 requires-python = ">=3.10"
@@ -13,7 +13,6 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
