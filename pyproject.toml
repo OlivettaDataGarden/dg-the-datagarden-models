@@ -1,11 +1,16 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+
 [project]
 name = "the-datagarden-models"
-version = "1.7.7"
+version = "1.8.0"
 description = "Base data models for the datagarden."
 readme = "README.rst"
 requires-python = ">=3.10"
 license = { file = "LICENSE" }
-authors = [{ name = "Maarten de Ruyter", email = "info@the-datagarden.io" }]
+authors = [{ name = "Maarten de Ruyter", email = "maarten@the-datagarden.io" }]
 keywords = ["geojson", "demographics", "economics"]
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -13,7 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.14",
     "Operating System :: OS Independent",
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -32,7 +37,7 @@ dependencies = [
     "pydantic>=2.9.2",
 ]
 
-[dependency-groups]
+[project.optional-dependencies]
 dev = [
     "mypy>=1.13.0",
     "pre-commit>=4.0.1",
@@ -70,3 +75,9 @@ ignore = [
 [tool.ruff.format]
 indent-style = "space"
 quote-style = "double"
+
+[dependency-groups]
+dev = [
+    "tox>=4.32.0",
+    "tox-uv>=1.29.0",
+]

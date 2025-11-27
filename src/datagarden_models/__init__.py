@@ -19,39 +19,41 @@ Objects for discovery of available dataclasses
 from .models import DatagardenModelKeys, DatagardenModels
 from .models.base import DataGardenModel, DataGardenSubModel
 from .support import (
-    ContinentStats,
-    CountryStats,
-    GetPeriodTypeTransformer,
-    PeriodTypeNormalizer,
-    RegionalDataStats,
-    RegionData,
+	ContinentStats,
+	CountryStats,
+	GetPeriodTypeTransformer,
+	PeriodTypeNormalizer,
+	RegionalDataStats,
+	RegionData,
 )
 
 
 def get_values_from_class(cls: type):
-    for key, value in vars(cls).items():
-        if not key.startswith("__"):
-            yield value
+	for key, value in vars(cls).items():
+		if not key.startswith("__"):
+			yield value
 
 
 AVAILABLE_MODEL_NAMES: list[str] = [
-    klass.DATAGARDEN_MODEL_NAME for klass in get_values_from_class(DatagardenModelKeys)
+	klass.DATAGARDEN_MODEL_NAME for klass in get_values_from_class(DatagardenModelKeys)
 ]
 
-AVAILABLE_MODELS: list[type[DataGardenModel]] = list(get_values_from_class(DatagardenModels))
+AVAILABLE_MODELS: list[type[DataGardenModel]] = list(
+	get_values_from_class(DatagardenModels)
+)
 
 
 __all__ = [
-    "DatagardenModels",
-    "DatagardenModelKeys",
-    "AVAILABLE_MODELS",
-    "AVAILABLE_MODEL_NAMES",
-    "CountryStats",
-    "RegionData",
-    "RegionalDataStats",
-    "ContinentStats",
-    "DataGardenModel",
-    "DataGardenSubModel",
-    "GetPeriodTypeTransformer",
-    "PeriodTypeNormalizer",
+	"DatagardenModels",
+	"DatagardenModelKeys",
+	"AVAILABLE_MODELS",
+	"AVAILABLE_MODEL_NAMES",
+	"CountryStats",
+	"RegionData",
+	"RegionalDataStats",
+	"ContinentStats",
+	"DataGardenModel",
+	"DataGardenSubModel",
+	"GetPeriodTypeTransformer",
+	"PeriodTypeNormalizer",
 ]

@@ -1,6 +1,6 @@
 """
-Module for handling period and period types. Main task is to normalize string and date representations
-of periods in compliance with the period type.
+Module for handling period and period types. Main task is to normalize string
+and date representations of periods in compliance with the period type.
 
 For example for period type "week" the following strings are valid:
 - 2024-W01
@@ -31,55 +31,55 @@ from .week_normalizer import WeekPeriodTransformer
 from .year_normalizer import YearPeriodTransformer
 
 PERIOD_TYPES = {
-    "year": "year",
-    "quarter": "quarter",
-    "month": "month",
-    "week": "week",
-    "day": "day",
-    "y": "year",
-    "q": "quarter",
-    "m": "month",
-    "w": "week",
-    "d": "day",
+	"year": "year",
+	"quarter": "quarter",
+	"month": "month",
+	"week": "week",
+	"day": "day",
+	"y": "year",
+	"q": "quarter",
+	"m": "month",
+	"w": "week",
+	"d": "day",
 }
 
 
 class GetPeriodTypeTransformer:
-    """
-    Get the period transformer for a given period type.
+	"""
+	Get the period transformer for a given period type.
 
-    Period types are:
-        - year
-        - quarter
-        - month
-        - week
-        - day
-    and can be abbreviated to:
-        - y, q, m, w, d
+	Period types are:
+	    - year
+	    - quarter
+	    - month
+	    - week
+	    - day
+	and can be abbreviated to:
+	    - y, q, m, w, d
 
-    period types are case insensitive.
+	period types are case insensitive.
 
-    Methods:
-        - get_transformer(period_type: str) -> PeriodTransformer
-        returns the transformer for the given period type.
-    """
+	Methods:
+	    - get_transformer(period_type: str) -> PeriodTransformer
+	    returns the transformer for the given period type.
+	"""
 
-    @staticmethod
-    def get_transformer(period_type):
-        period_type = PERIOD_TYPES.get(period_type.lower())
-        match period_type:
-            case "year":
-                return YearPeriodTransformer()
-            case "quarter":
-                return QuarterPeriodTransformer()
-            case "month":
-                return MonthPeriodTransformer()
-            case "week":
-                return WeekPeriodTransformer()
-            case "day":
-                return DayPeriodTransformer()
-            case _:
-                raise ValueError(f"Unsupported period type: {period_type}")
+	@staticmethod
+	def get_transformer(period_type):
+		period_type = PERIOD_TYPES.get(period_type.lower())
+		match period_type:
+			case "year":
+				return YearPeriodTransformer()
+			case "quarter":
+				return QuarterPeriodTransformer()
+			case "month":
+				return MonthPeriodTransformer()
+			case "week":
+				return WeekPeriodTransformer()
+			case "day":
+				return DayPeriodTransformer()
+			case _:
+				raise ValueError(f"Unsupported period type: {period_type}")
 
 
 __all__ = ["GetPeriodTypeTransformer", "PeriodTypeNormalizer"]
