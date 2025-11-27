@@ -12,7 +12,8 @@ Supported period types and their aliases:
 - week: "week", "w", "weekly"
 - day: "day", "d", "daily"
 
-All inputs are normalized to the standard format: "year", "quarter", "month", "week", or "day".
+All inputs are normalized to the standard format: "year", "quarter",
+"month", "week", or "day".
 """
 
 from typing import Literal
@@ -21,19 +22,19 @@ PeriodType = Literal["year", "quarter", "month", "week", "day"]
 
 
 class PeriodTypeNormalizer:
-    @classmethod
-    def normalize(self, period_type: str) -> PeriodType:
-        lower_period_type = period_type.lower()
-        match lower_period_type:
-            case "year" | "y" | "yearly":
-                return "year"
-            case "quarter" | "q" | "quarterly":
-                return "quarter"
-            case "month" | "m" | "monthly":
-                return "month"
-            case "week" | "w" | "weekly":
-                return "week"
-            case "day" | "d" | "daily":
-                return "day"
-            case _:
-                raise ValueError(f"Invalid period type: {period_type}")
+	@classmethod
+	def normalize(self, period_type: str) -> PeriodType:
+		lower_period_type = period_type.lower()
+		match lower_period_type:
+			case "year" | "y" | "yearly":
+				return "year"
+			case "quarter" | "q" | "quarterly":
+				return "quarter"
+			case "month" | "m" | "monthly":
+				return "month"
+			case "week" | "w" | "weekly":
+				return "week"
+			case "day" | "d" | "daily":
+				return "day"
+			case _:
+				raise ValueError(f"Invalid period type: {period_type}")
