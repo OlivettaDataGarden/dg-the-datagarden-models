@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "the-datagarden-models"
-version = "1.7.10"
+version = "1.8.0"
 description = "Base data models for the datagarden."
 readme = "README.rst"
 requires-python = ">=3.10"
@@ -18,6 +18,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Operating System :: OS Independent",
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
@@ -74,3 +75,9 @@ ignore = [
 [tool.ruff.format]
 indent-style = "space"
 quote-style = "double"
+
+[dependency-groups]
+dev = [
+    "tox>=4.32.0",
+    "tox-uv>=1.29.0",
+]
