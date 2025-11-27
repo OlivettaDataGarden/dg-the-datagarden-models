@@ -2,7 +2,6 @@
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
-
 [project]
 name = "the-datagarden-models"
 version = "1.8.0"
