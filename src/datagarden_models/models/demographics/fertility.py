@@ -29,7 +29,7 @@ L = FertilityV1Legends
 
 class Fertility(DataGardenSubModel):
 	total_births: Optional[float] = Field(default=None, description=L.TOTAL_BIRTHS)
-	age_unkonwn: int | None = Field(default=None, description=L.AGE_UNKNOWN)
+	age_unknown: int | None = Field(default=None, description=L.AGE_UNKNOWN)
 	births_by_age: Age | None = Field(default=None, description=L.BIRTHS_BY_AGE)
 	births_by_age_group: AgeGroup | None = Field(
 		default=None, description=L.BIRTHS_BY_AGE_GROUP
