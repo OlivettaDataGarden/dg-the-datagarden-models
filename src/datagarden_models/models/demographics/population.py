@@ -5,7 +5,7 @@ from pydantic import Field
 from datagarden_models.models.base.standard_models import ValueAndPercentage
 
 from ..base import DataGardenSubModel
-from .base_demographics import AgeGender, AgeGenderGroup
+from .base_demographics import AgeGenderStatistics
 
 
 ###########################################
@@ -109,15 +109,11 @@ class Ethnicity(DataGardenSubModel):
 class PopulationV1Legends:
 	BY_AGE_GENDER = (
 		"Age gender distribution for males and females. "
-		"Key is AGE-0 to AGE-99 or AGE-100+."
-	)
-	BY_AGE_GENDER_GROUP = (
-		"Age gender distribution for males and females by age group."
-		"Key is AGE-0-TO-100+ for example AGE-0-TO-10 wich means 0 up till 10 "
-		"years old (not including 10)."
+		"Float/int per age or age group and gender. "
+		"Key is AGE-0 to AGE-99 or AGE-100+ for ages or "
+		"AGE-0-TO-100+ for age groups."
 	)
 	TOTAL = "Total population. In number of individuals."
-
 	TOTAL_MALE = "Total number of males in the population. In number of individuals."
 	TOTAL_FEMALE = (
 		"Total number of females in the population. In number of individuals."
@@ -141,11 +137,8 @@ L = PopulationV1Legends
 
 
 class Population(DataGardenSubModel):
-	by_age_gender: AgeGender = Field(
-		default_factory=AgeGender, description=L.BY_AGE_GENDER
-	)
-	by_age_gender_group: AgeGenderGroup = Field(
-		default_factory=AgeGenderGroup, description=L.BY_AGE_GENDER_GROUP
+	by_age_gender: AgeGenderStatistics = Field(
+		default_factory=AgeGenderStatistics, description=L.BY_AGE_GENDER
 	)
 	total: Optional[float] = Field(default=None, description=L.TOTAL)
 
@@ -167,7 +160,6 @@ class Population(DataGardenSubModel):
 class PopulationV1Keys(EthnicityKeys):
 	POPULATION = "population"
 	BY_AGE_GENDER = "by_age_gender"
-	BY_AGE_GENDER_GROUP = "by_age_gender_group"
 	TOTAL = "total"
 	TOTAL_MALE = "total_male"
 	TOTAL_FEMALE = "total_female"

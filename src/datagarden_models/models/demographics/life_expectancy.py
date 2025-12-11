@@ -3,30 +3,10 @@ from typing import Optional
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
-
-
-class AgeGenderLifeExpectancyLegends:
-	AGE_GENDER_MALE = (
-		"Life expectancy for males. In number years still expected to live "
-		"per age or age group."
-	)
-	AGE_GENDER_FEMALE = (
-		"Life expectancy for females. In number years still expected to live "
-		"per age or age group."
-	)
-	AGE_GENDER_TOTAL = (
-		"Life expectancy for total population. In number years still expected "
-		"to live per age or age group."
-	)
-
-
-AGL = AgeGenderLifeExpectancyLegends
-
-
-class LifeExpectancyByAgeGender(DataGardenSubModel):
-	male: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_MALE)
-	female: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_FEMALE)
-	total: dict = Field(default_factory=dict, description=AGL.AGE_GENDER_TOTAL)
+from datagarden_models.models.demographics.base_demographics import (
+	AgeGender,
+	AgeGenderGroup,
+)
 
 
 class LifeExpectancyAtBirthLegends:
@@ -55,7 +35,8 @@ class LifeExpectancyAtBirth(DataGardenSubModel):
 
 class LifeExpectancyV1Keys:
 	LIFE_EXPECTANCY_AT_BIRTH = "life_expectancy_at_birth"
-	REMAINING_LIFE_EXPECTANCY = "remaining_life_expectancy"
+	REMAINING_LIFE_EXPECTANCY_BY_AGE = "remaining_life_expectancy_by_age"
+	REMAINING_LIFE_EXPECTANCY_BY_AGE_GROUP = "remaining_life_expectancy_by_age_group"
 
 
 class LifeExpectancyV1Legends:
@@ -63,9 +44,13 @@ class LifeExpectancyV1Legends:
 		"Life expectancy per age or age group at birth. "
 		"In years expected to live when born"
 	)
-	REMAINING_LIFE_EXPECTANCY = (
-		"Life expectancy per age or age group at current age. "
+	REMAINING_LIFE_EXPECTANCY_BY_AGE = (
+		"Life expectancy per age and grender. "
 		"In years expected to live as of current age"
+	)
+	REMAINING_LIFE_EXPECTANCY_BY_AGE_GROUP = (
+		"Life expectancy per age group and grender. "
+		"In years expected to live as of current age by age group"
 	)
 
 
@@ -77,7 +62,11 @@ class LifeExpectancy(DataGardenSubModel):
 		default_factory=LifeExpectancyAtBirth, description=L.LIFE_EXPECTANCY_AT_BIRTH
 	)
 
-	remaining_life_expectancy: LifeExpectancyByAgeGender = Field(
-		default_factory=LifeExpectancyByAgeGender,
-		description=L.REMAINING_LIFE_EXPECTANCY,
+	remaining_life_expectancy_by_age: AgeGender = Field(
+		default_factory=AgeGender,
+		description=L.REMAINING_LIFE_EXPECTANCY_BY_AGE,
+	)
+	remaining_life_expectancy_by_age_group: AgeGenderGroup = Field(
+		default_factory=AgeGenderGroup,
+		description=L.REMAINING_LIFE_EXPECTANCY_BY_AGE_GROUP,
 	)

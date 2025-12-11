@@ -7,6 +7,9 @@ from datagarden_models.models.base import DataGardenSubModel
 class DemographicsBaseKeys:
 	MALE = "male"
 	FEMALE = "female"
+	TOTAL = "total"
+	AGE = "age"
+	AGE_GROUP = "age_group"
 
 
 class DemographicsBaseLegends:
@@ -21,6 +24,14 @@ class DemographicsBaseLegends:
 	)
 	AGE_GENDER_GROUP_TOTAL = (
 		"Total number of individuals. In number of individuals per age group."
+	)
+	AGE_GENDER_STATISTICS = (
+		"Statistics for age and gender. Float/int per age and gender. "
+		"Key is AGE-0 to AGE-99 or AGE-100+."
+	)
+	AGE_GENDER_GROUP_STATISTICS = (
+		"Statistics for age group and gender. Float/int per age group and gender. "
+		"Key is AGE-0-TO-100+."
 	)
 
 
@@ -134,3 +145,10 @@ class AgeGenderGroup(DataGardenSubModel):
 	male: AgeGroup = Field(default=None, description=L.AGE_GENDER_GROUP_MALE)
 	female: AgeGroup = Field(default=None, description=L.AGE_GENDER_GROUP_FEMALE)
 	total: AgeGroup = Field(default=None, description=L.AGE_GENDER_GROUP_TOTAL)
+
+
+class AgeGenderStatistics(DataGardenSubModel):
+	age: AgeGender = Field(default=None, description=L.AGE_GENDER_STATISTICS)
+	age_group: AgeGenderGroup = Field(
+		default=None, description=L.AGE_GENDER_GROUP_STATISTICS
+	)
