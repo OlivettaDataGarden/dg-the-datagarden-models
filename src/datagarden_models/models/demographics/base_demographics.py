@@ -1,5 +1,5 @@
 import re
-from pydantic import Field, field_validator
+from pydantic import Field, RootModel, field_validator
 
 from datagarden_models.models.base import DataGardenSubModel
 
@@ -27,21 +27,15 @@ class DemographicsBaseLegends:
 L = DemographicsBaseLegends
 
 
-class AgeGender(DataGardenSubModel):
-	male: dict = Field(default_factory=dict, description=L.AGE_GENDER_MALE)
-	female: dict = Field(default_factory=dict, description=L.AGE_GENDER_FEMALE)
-	total: dict = Field(default_factory=dict, description=L.AGE_GENDER_TOTAL)
+class Age(RootModel[dict[str, int]]):
+	root: dict[str, int]
 
-	@field_validator("male", "female", "total", mode="after")
+	@field_validator("root", mode="after")
 	@classmethod
-	def validate_age_gender_dict(cls, v: dict) -> dict:
-		"""
-		Validate that dict keys are in format AGE-0 to AGE-99 or AGE-100+
-		and values are integers.
-		"""
+	def validate_dict(cls, v: dict[str, int]) -> dict[str, int]:
+		"""Validate keys and values."""
 		if not v:
 			return v
-
 		# Pattern for AGE-0 through AGE-99 or AGE-100+
 		age_pattern = re.compile(r"^AGE-(?:[0-9]|[1-9][0-9]|100\+)$")
 
@@ -50,10 +44,10 @@ class AgeGender(DataGardenSubModel):
 			if not age_pattern.match(key):
 				raise ValueError(
 					f"Invalid key '{key}'. Keys must be in format "
-					f"'AGE-0' through 'AGE-99' or 'AGE-100+'"
+					f"'AGE-0' through 'AGE-99' or 'AGE-100+'."
 				)
 
-			# Validate value is integer
+			# Validate value
 			if not isinstance(value, int):
 				raise ValueError(
 					f"Value for key '{key}' must be an integer, "
@@ -63,17 +57,21 @@ class AgeGender(DataGardenSubModel):
 		return v
 
 
-class AgeGenderGroup(DataGardenSubModel):
-	male: dict = Field(default_factory=dict, description=L.AGE_GENDER_GROUP_MALE)
-	female: dict = Field(default_factory=dict, description=L.AGE_GENDER_GROUP_FEMALE)
-	total: dict = Field(default_factory=dict, description=L.AGE_GENDER_GROUP_TOTAL)
+class AgeGender(DataGardenSubModel):
+	male: Age | None = Field(default=None, description=L.AGE_GENDER_MALE)
+	female: Age | None = Field(default=None, description=L.AGE_GENDER_FEMALE)
+	total: Age | None = Field(default=None, description=L.AGE_GENDER_TOTAL)
 
-	@field_validator("male", "female", "total", mode="after")
+
+class AgeGroup(RootModel[dict[str, int]]):
+	root: dict[str, int]
+
+	@field_validator("root", mode="after")
 	@classmethod
-	def validate_age_gender_group_dict(cls, v: dict) -> dict:
+	def validate_age_group_dict(cls, v: dict[str, int]) -> dict[str, int]:
 		"""
 		Validate that dict keys are in format AGE-{start}-TO-{end} where start is 0-99
-		and end is 2-100+, and values are integers.
+		and end is 2-100+ and values are integers.
 		"""
 		if not v:
 			return v
@@ -130,3 +128,9 @@ class AgeGenderGroup(DataGardenSubModel):
 				)
 
 		return v
+
+
+class AgeGenderGroup(DataGardenSubModel):
+	male: AgeGroup = Field(default=None, description=L.AGE_GENDER_GROUP_MALE)
+	female: AgeGroup = Field(default=None, description=L.AGE_GENDER_GROUP_FEMALE)
+	total: AgeGroup = Field(default=None, description=L.AGE_GENDER_GROUP_TOTAL)
