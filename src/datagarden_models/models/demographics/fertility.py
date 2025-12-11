@@ -8,6 +8,7 @@ from datagarden_models.models.demographics.base_demographics import Age, AgeGrou
 
 class FertilityV1Legends:
 	TOTAL_BIRTHS = "Total number of births in the population."
+	AGE_UNKNOWN = "Number of births with unknown age of the mother."
 	BIRTHS_BY_AGE = "Number of births categorized by age of the mother."
 	AVERAGE_AGE_MOTHER = "Average age of mothers at childbirth."
 	BIRTHS_BY_AGE_GROUP = "Number of births categorized by age group of the mother."
@@ -28,6 +29,7 @@ L = FertilityV1Legends
 
 class Fertility(DataGardenSubModel):
 	total_births: Optional[float] = Field(default=None, description=L.TOTAL_BIRTHS)
+	age_unkonwn: int | None = Field(default=None, description=L.AGE_UNKNOWN)
 	births_by_age: Age | None = Field(default=None, description=L.BIRTHS_BY_AGE)
 	births_by_age_group: AgeGroup | None = Field(
 		default=None, description=L.BIRTHS_BY_AGE_GROUP
@@ -57,6 +59,7 @@ class Fertility(DataGardenSubModel):
 
 class FertilityV1Keys:
 	TOTAL_BIRTHS = "total_births"
+	AGE_UNKNOWN = "age_unknown"
 	BIRTHS_BY_AGE = "births_by_age"
 	BIRTHS_BY_AGE_GROUP = "births_by_age_group"
 	AVERAGE_AGE_MOTHER = "average_age_mother"
