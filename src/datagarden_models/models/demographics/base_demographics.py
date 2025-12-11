@@ -13,6 +13,14 @@ class DemographicsBaseKeys:
 
 
 class DemographicsBaseLegends:
+	AGE = (
+		"Statistics for a single age. Float/int per age. "
+		"Key is AGE-0 to AGE-99 or AGE-100+."
+	)
+
+	AGE_GROUP = (
+		"Statistics for an age group. Float/int per age group. Key is AGE-0-TO-100+."
+	)
 	AGE_GENDER_MALE = "Number of males. In number of individuals per single age."
 	AGE_GENDER_FEMALE = "Number of females. In number of individuals per single age."
 	AGE_GENDER_TOTAL = (
@@ -152,3 +160,8 @@ class AgeGenderStatistics(DataGardenSubModel):
 	age_group: AgeGenderGroup = Field(
 		default=None, description=L.AGE_GENDER_GROUP_STATISTICS
 	)
+
+
+class AgeStatistics(DataGardenSubModel):
+	age: Age = Field(default=None, description=L.AGE)
+	age_group: AgeGroup = Field(default=None, description=L.AGE_GROUP)

@@ -4,19 +4,21 @@ from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
 
-from .base_demographics import AgeGender, AgeGenderGroup
+from .base_demographics import AgeGenderStatistics
 
 
 class MortalityV1Legends:
-	DEATHS_BY_AGE = "Death count per year and gender. In number of individuals per age."
-	DEATHS_BY_AGE_GROUP = (
-		"Death count per year and gender. In number of individuals per age group."
+	DEATHS_BY_AGE = (
+		"Death count per year and gender. "
+		"In number of individuals per age or age group and gender. "
+		"Key is AGE-0 to AGE-99 or AGE-100+ for ages or "
+		"AGE-0-TO-100+ for age groups."
 	)
 	MORTALITY_BY_AGE = (
-		"Mortality per 1000 of live births. In number of individuals per age."
-	)
-	MORTALITY_BY_AGE_GROUP = (
-		"Mortality per 1000 of live births. In number of individuals per age group."
+		"Mortality per 1000 of live births. "
+		"In number of deaths per 1000 live births per age or age group and gender. "
+		"Key is AGE-0 to AGE-99 or AGE-100+ for ages or "
+		"AGE-0-TO-100+ for age groups."
 	)
 	TOTAL_DEATHS = "Total number of deaths in a year. In number of individuals."
 	INFANT_DEATHS = "Number of infant deaths under age 1. In number of individuals."
@@ -34,14 +36,11 @@ L = MortalityV1Legends
 
 
 class Mortality(DataGardenSubModel):
-	deaths_by_age: AgeGender = Field(
-		default_factory=AgeGender, description=L.DEATHS_BY_AGE
+	deaths_by_age: AgeGenderStatistics = Field(
+		default_factory=AgeGenderStatistics, description=L.DEATHS_BY_AGE
 	)
-	deaths_by_age_group: AgeGenderGroup = Field(
-		default_factory=AgeGenderGroup, description=L.DEATHS_BY_AGE_GROUP
-	)
-	mortality_by_age: AgeGender = Field(
-		default_factory=AgeGender, description=L.MORTALITY_BY_AGE
+	mortality_by_age: AgeGenderStatistics = Field(
+		default_factory=AgeGenderStatistics, description=L.MORTALITY_BY_AGE
 	)
 	total_deaths: Optional[float] = Field(default=None, description=L.TOTAL_DEATHS)
 	total_male_deaths: Optional[float] = Field(
@@ -59,9 +58,7 @@ class Mortality(DataGardenSubModel):
 
 class MortalityV1Keys:
 	DEATHS_BY_AGE = "deaths_by_age"
-	DEATHS_BY_AGE_GROUP = "deaths_by_age_group"
 	MORTALITY_BY_AGE = "mortality_by_age"
-	MORTALITY_BY_AGE_GROUP = "mortality_by_age_group"
 	TOTAL_DEATHS = "total_deaths"
 	INFANT_DEATHS = "infant_deaths"
 	INFANT_DEATH_RATE = "infant_death_rate"

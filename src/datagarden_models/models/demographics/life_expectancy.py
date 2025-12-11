@@ -3,10 +3,7 @@ from typing import Optional
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
-from datagarden_models.models.demographics.base_demographics import (
-	AgeGender,
-	AgeGenderGroup,
-)
+from datagarden_models.models.demographics.base_demographics import AgeGenderStatistics
 
 
 class LifeExpectancyAtBirthLegends:
@@ -36,7 +33,6 @@ class LifeExpectancyAtBirth(DataGardenSubModel):
 class LifeExpectancyV1Keys:
 	LIFE_EXPECTANCY_AT_BIRTH = "life_expectancy_at_birth"
 	REMAINING_LIFE_EXPECTANCY_BY_AGE = "remaining_life_expectancy_by_age"
-	REMAINING_LIFE_EXPECTANCY_BY_AGE_GROUP = "remaining_life_expectancy_by_age_group"
 
 
 class LifeExpectancyV1Legends:
@@ -45,12 +41,10 @@ class LifeExpectancyV1Legends:
 		"In years expected to live when born"
 	)
 	REMAINING_LIFE_EXPECTANCY_BY_AGE = (
-		"Life expectancy per age and grender. "
+		"Life expectancy per age and gender. Float/int per age and gender. "
+		"Key is AGE-0 to AGE-99 or AGE-100+ for ages or "
+		"AGE-0-TO-100+ for age groups."
 		"In years expected to live as of current age"
-	)
-	REMAINING_LIFE_EXPECTANCY_BY_AGE_GROUP = (
-		"Life expectancy per age group and grender. "
-		"In years expected to live as of current age by age group"
 	)
 
 
@@ -62,11 +56,7 @@ class LifeExpectancy(DataGardenSubModel):
 		default_factory=LifeExpectancyAtBirth, description=L.LIFE_EXPECTANCY_AT_BIRTH
 	)
 
-	remaining_life_expectancy_by_age: AgeGender = Field(
-		default_factory=AgeGender,
+	remaining_life_expectancy_by_age: AgeGenderStatistics = Field(
+		default_factory=AgeGenderStatistics,
 		description=L.REMAINING_LIFE_EXPECTANCY_BY_AGE,
-	)
-	remaining_life_expectancy_by_age_group: AgeGenderGroup = Field(
-		default_factory=AgeGenderGroup,
-		description=L.REMAINING_LIFE_EXPECTANCY_BY_AGE_GROUP,
 	)
