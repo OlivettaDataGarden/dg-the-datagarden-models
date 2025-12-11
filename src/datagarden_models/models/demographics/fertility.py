@@ -34,7 +34,7 @@ class Fertility(DataGardenSubModel):
 	births_by_age_group: AgeGroup | None = Field(
 		default=None, description=L.BIRTHS_BY_AGE_GROUP
 	)
-	average_age_mother: Optional[float] = Field(
+	average_age_mother: float | None = Field(
 		default=None, description=L.AVERAGE_AGE_MOTHER
 	)
 	median_age_mother: float | None = Field(
