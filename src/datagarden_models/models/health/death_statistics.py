@@ -40,6 +40,6 @@ class DeathRateIDC10(DataGardenSubModel):
 
 
 class DeathStatistics(DataGardenSubModel):
-	death_rate_idc10: ByGender = Field(
-		default_factory=ByGender, description=L.DEATH_RATE_BY_IDC10
+	death_rate_idc10: DeathRateIDC10 = Field(
+		default_factory=DeathRateIDC10, description=L.DEATH_RATE_BY_IDC10
 	)
