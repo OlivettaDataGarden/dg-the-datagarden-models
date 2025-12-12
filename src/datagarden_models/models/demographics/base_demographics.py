@@ -46,12 +46,14 @@ class DemographicsBaseLegends:
 L = DemographicsBaseLegends
 
 
-class Age(RootModel[dict[str, float | int]]):
-	root: dict[str, float | int]
+class Age(RootModel[dict[str, float | int | dict]]):
+	root: dict[str, float | int | dict]
 
 	@field_validator("root", mode="after")
 	@classmethod
-	def validate_dict(cls, v: dict[str, float | int]) -> dict[str, float | int]:
+	def validate_dict(
+		cls, v: dict[str, float | int | dict]
+	) -> dict[str, float | int | dict]:
 		"""Validate keys and values."""
 		if not v:
 			return v
@@ -67,9 +69,9 @@ class Age(RootModel[dict[str, float | int]]):
 				)
 
 			# Validate value
-			if not isinstance(value, float | int):
+			if not isinstance(value, float | int | dict):
 				raise ValueError(
-					f"Value for key '{key}' must be a float or int, "
+					f"Value for key '{key}' must be a float or int or dict, "
 					f"got {type(value).__name__}"
 				)
 
@@ -82,12 +84,14 @@ class AgeGender(DataGardenSubModel):
 	total: Age | None = Field(default=None, description=L.AGE_GENDER_TOTAL)
 
 
-class AgeGroup(RootModel[dict[str, float]]):
-	root: dict[str, float]
+class AgeGroup(RootModel[dict[str, float | int | dict]]):
+	root: dict[str, float | int | dict]
 
 	@field_validator("root", mode="after")
 	@classmethod
-	def validate_age_group_dict(cls, v: dict[str, float]) -> dict[str, float]:
+	def validate_age_group_dict(
+		cls, v: dict[str, float | int | dict]
+	) -> dict[str, float | int | dict]:
 		"""
 		Validate that dict keys are in format AGE-{start}-TO-{end} where start is 0-99
 		and end is 2-100+ and values are integers.
@@ -139,10 +143,10 @@ class AgeGroup(RootModel[dict[str, float]]):
 					f"must be >= start age ({start})."
 				)
 
-			# Validate value is float
-			if not isinstance(value, float):
+			# Validate value is float, int or dict
+			if not isinstance(value, float | int | dict):
 				raise ValueError(
-					f"Value for key '{key}' must be a float, "
+					f"Value for key '{key}' must be a float, int or dict, "
 					f"got {type(value).__name__}"
 				)
 
