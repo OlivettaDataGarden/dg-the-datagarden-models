@@ -6,7 +6,12 @@ from datagarden_models.models.demographics.base_demographics import AgeGenderSta
 from .base_health import ByGender
 
 
-class DeathStatisticsKeys:
+class DeathRateIDC10Keys:
+	BY_GENDER = "by_gender"
+	BY_AGE_GENDER = "by_age_gender"
+
+
+class DeathStatisticsKeys(DeathRateIDC10Keys):
 	DEATH_RATE_BY_IDC10 = "death_rate_idc10"
 
 
