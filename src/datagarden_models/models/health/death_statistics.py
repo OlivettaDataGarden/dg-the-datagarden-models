@@ -1,7 +1,10 @@
 from pydantic import Field
 
 from datagarden_models.models.base import DataGardenSubModel
-from datagarden_models.models.demographics.base_demographics import AgeGenderStatistics
+from datagarden_models.models.demographics.base_demographics import (
+	AgeGenderStatistics,
+	DemographicsBaseKeys,
+)
 
 from .base_health import ByGender
 
@@ -11,7 +14,7 @@ class DeathRateIDC10Keys:
 	BY_AGE_GENDER = "by_age_gender"
 
 
-class DeathStatisticsKeys(DeathRateIDC10Keys):
+class DeathStatisticsKeys(DeathRateIDC10Keys, DemographicsBaseKeys):
 	DEATH_RATE_BY_IDC10 = "death_rate_idc10"
 
 
