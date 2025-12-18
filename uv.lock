@@ -880,7 +880,7 @@ wheels = [
 
 [[package]]
 name = "the-datagarden-models"
-version = "1.8.17"
+version = "1.8.18"
 source = { editable = "." }
 dependencies = [
     { name = "click" },

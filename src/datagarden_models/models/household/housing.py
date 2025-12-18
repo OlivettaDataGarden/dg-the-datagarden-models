@@ -91,7 +91,7 @@ class Tenure(DataGardenSubModel):
 ###########################################
 class DwellingKeys:
 	TENURE = "tenure"
-	TYPE = "type of dwelling"
+	TYPE = "type"
 
 
 class DwellingLegends:
