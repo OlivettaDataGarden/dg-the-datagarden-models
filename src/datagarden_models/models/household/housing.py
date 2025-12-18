@@ -17,7 +17,7 @@ class DwellingTypeKeys:
 	DETACHED = "detached"
 	SEMI_DETACHED = "semi_detached"
 	ROW_HOUSE = "row_house"
-	APARTMENT = "apartment"
+	APPARTMENT = "appartment"
 	BOAT_HOUSE = "boat_house"
 	MOBILE_HOME = "mobile_home"
 
@@ -26,7 +26,7 @@ class DwellingTypeLegends:
 	DETACHED = "Detached house."
 	SEMI_DETACHED = "Semi-detached house."
 	ROW_HOUSE = "Row or town house."
-	APARTMENT = "Apartment or flat."
+	APPARTMENT = "Appartment or flat."
 	BOAT_HOUSE = "Boat house."
 	MOBILE_HOME = "Mobile home."
 
@@ -44,8 +44,8 @@ class DwellingType(DataGardenSubModel):
 	row_house: Optional[ValueAndPercentage] = Field(
 		default=None, description=DT.ROW_HOUSE
 	)
-	apartment: Optional[ValueAndPercentage] = Field(
-		default=None, description=DT.APARTMENT
+	appartment: Optional[ValueAndPercentage] = Field(
+		default=None, description=DT.APPARTMENT
 	)
 	boat_house: Optional[ValueAndPercentage] = Field(
 		default=None, description=DT.BOAT_HOUSE

@@ -55,6 +55,28 @@ class WagesLegends:
 WL = WagesLegends
 
 
+class CarOwnershipLegends:
+	HOUSEHOLD_CAR_OWNERSHIP = "Household with at least one car."
+	HOUSEHOLD_2_OR_MORE_CARS = "Household with 2 or more cars."
+
+
+COL = CarOwnershipLegends
+
+
+class CarOwnership(DataGardenSubModel):
+	household_car_ownership: Optional[ValueAndPercentage] = Field(
+		default=None, description=COL.HOUSEHOLD_CAR_OWNERSHIP
+	)
+	household_2_or_more_cars: Optional[ValueAndPercentage] = Field(
+		default=None, description=COL.HOUSEHOLD_2_OR_MORE_CARS
+	)
+
+
+class CarOwnershipKeys:
+	HOUSEHOLD_CAR_OWNERSHIP = "household_car_ownership"
+	HOUSEHOLD_2_OR_MORE_CARS = "household_2_or_more_cars"
+
+
 class Wages(DataGardenSubModel):
 	average_monthly_wage: Optional[EconomicsValue] = Field(
 		default=None, description=WL.AVERAGE_MONTHLY_WAGE
@@ -78,6 +100,7 @@ class EconomicsLegends:
 		"Population count with social welfare benefit other then pension."
 	)
 	WAGES = "Wage information."
+	CAR_OWNERSHIP = "Car ownership information."
 
 
 EL = EconomicsLegends
@@ -91,9 +114,13 @@ class Economics(DataGardenSubModel):
 		default=None, description=EL.SOCIAL_WELFARE_BENEFIT
 	)
 	wages: Optional[Wages] = Field(default=None, description=EL.WAGES)
+	car_ownership: Optional[CarOwnership] = Field(
+		default=None, description=EL.CAR_OWNERSHIP
+	)
 
 
-class EconomicsKeys(HouseholdIncomeKeys, WagesKeys):
+class EconomicsKeys(HouseholdIncomeKeys, WagesKeys, CarOwnershipKeys):
 	HOUSEHOLD_INCOME = "household_income"
 	WAGES = "wages"
+	CAR_OWNERSHIP = "car_ownership"
 	SOCIAL_WELFARE_BENEFIT = "social_welfare_benefit"
